@@ -1,6 +1,54 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
+function ContactForm() {
+  const [status, setStatus] = useState<"idle"|"sending"|"done"|"error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    try {
+      const res = await fetch("https://formspree.io/f/xzdjnlgg", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) { setStatus("done"); form.reset(); }
+      else setStatus("error");
+    } catch { setStatus("error"); }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label className="text-xs text-white/30 tracking-wider block mb-2">NAME</label>
+        <input name="name" required
+          className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00FF88]/40"
+          placeholder="Your name" />
+      </div>
+      <div>
+        <label className="text-xs text-white/30 tracking-wider block mb-2">EMAIL</label>
+        <input name="email" type="email" required
+          className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00FF88]/40"
+          placeholder="name@company.com" />
+      </div>
+      <div>
+        <label className="text-xs text-white/30 tracking-wider block mb-2">MESSAGE</label>
+        <textarea name="message" required rows={4}
+          className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-[#00FF88]/40 resize-none"
+          placeholder="Interested in a pilot deployment..." />
+      </div>
+      <button type="submit" disabled={status === "sending"}
+        className="bg-[#00FF88] text-black px-6 py-3 text-xs font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors disabled:opacity-50">
+        {status === "sending" ? "SENDING..." : status === "done" ? "✓ SENT" : "SEND MESSAGE"}
+      </button>
+      {status === "error" && <p className="text-xs text-red-400">Something went wrong. Try again.</p>}
+    </form>
+  );
+}
+
 export default function Home() {
   const [copied, setCopied] = useState(false);
   const [verifyResult, setVerifyResult] = useState<null | "VALID" | "INVALID">(null);
@@ -406,6 +454,39 @@ export default function Home() {
               className="border border-white/20 text-white/70 px-8 py-4 text-sm tracking-wider hover:border-white/40 hover:text-white transition-colors">
               REQUEST DEMO
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-24 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-xs text-white/30 tracking-[0.3em] mb-4">CONTACT</div>
+          <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
+          <p className="text-white/40 text-sm mb-12 max-w-xl">
+            Interested in a pilot deployment, partnership or investment? Send us a message.
+          </p>
+          <div className="grid md:grid-cols-2 gap-12">
+            <ContactForm />
+            <div className="space-y-6">
+              <div>
+                <div className="text-xs text-white/30 tracking-wider mb-2">EMAIL</div>
+                <div className="text-sm text-white/70">security@foritech.bg</div>
+              </div>
+              <div>
+                <div className="text-xs text-white/30 tracking-wider mb-2">GITHUB</div>
+                <a href="https://github.com/foritech-secure-system"
+                  className="text-sm text-[#00FF88] hover:underline" target="_blank">
+                  github.com/foritech-secure-system
+                </a>
+              </div>
+              <div>
+                <div className="text-xs text-white/30 tracking-wider mb-2">EDGE INSTALLER</div>
+                <div className="text-xs font-mono text-white/50">
+                  curl -fsSL https://edge.forisec.eu/install.sh | bash
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
