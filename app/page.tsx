@@ -164,7 +164,7 @@ export default function Home() {
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="text-xs text-white/30 tracking-[0.3em] mb-12">THE PROBLEM</div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 title: "Telemetry spoofing",
@@ -338,20 +338,28 @@ export default function Home() {
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
           <h2 className="text-3xl font-bold mb-16">Edge is free. Verification is the product.</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {[
+            [
               {
                 name: "FREE",
                 price: "€0",
                 period: "forever",
-                features: ["1 device", "100 verifications/day", "Community support"],
+                features: ["1 device", "100 verifications/day", "Community support", "Edge Agent included"],
                 cta: "Start free",
                 highlight: false,
               },
               {
                 name: "STARTER",
-                price: "€49",
+                price: "€99",
                 period: "per month",
-                features: ["10 devices", "Unlimited verifications", "API access", "Audit logs", "Email support"],
+                features: ["10 devices", "50,000 verifications/month", "API access", "Audit logs", "Email support"],
+                cta: "Start trial",
+                highlight: false,
+              },
+              {
+                name: "INDUSTRIAL",
+                price: "€499",
+                period: "per month",
+                features: ["50 devices", "500,000 verifications/month", "Priority support", "Compliance reports", "SLA"],
                 cta: "Start trial",
                 highlight: true,
               },
@@ -359,7 +367,7 @@ export default function Home() {
                 name: "ENTERPRISE",
                 price: "Custom",
                 period: "",
-                features: ["Unlimited devices", "On-prem cluster", "SLA guarantee", "Compliance reporting", "Dedicated support"],
+                features: ["Unlimited devices", "Unlimited verifications", "On-prem cluster", "Dedicated support", "Custom SLA"],
                 cta: "Contact us",
                 highlight: false,
               },
