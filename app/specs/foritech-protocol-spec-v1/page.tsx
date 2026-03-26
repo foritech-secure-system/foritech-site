@@ -72,7 +72,7 @@ export default function ProtocolSpec() {
             The signature provides authenticity and integrity protection. It must cover header, metadata, and payload.
             <div className="mt-4 border border-[#00FF88]/20 bg-[#00FF88]/5 p-4">
               <div className="text-xs text-[#00FF88] tracking-wider mb-1">PRIMARY ALGORITHM</div>
-              <div className="text-lg font-bold text-white">ML-DSA</div>
+              <div className="text-lg font-bold text-white">ML-DSA-65</div>
               <div className="text-xs text-white/40 mt-1">Post-quantum cryptography — NIST standardized. PQC-first protocol.</div>
             </div>
           </Section>
