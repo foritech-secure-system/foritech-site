@@ -517,8 +517,8 @@ export default function Home() {
             <div>
               <div className="text-xs text-white/20 tracking-wider mb-3">PRODUCT</div>
               <div className="space-y-2">
-                {["Docs", "GitHub", "Edge Agent"].map((l) => (
-                  <div key={l} className="text-xs text-white/40 hover:text-white/70 cursor-pointer">{l}</div>
+                {[["Docs", "#"], ["GitHub", "https://github.com/foritech-secure-system"], ["Edge Agent", "https://edge.forisec.eu/install.sh"], ["Protocol Spec", "/specs/foritech-protocol-spec-v1"]].map(([l, href]) => (
+                  <a key={l} href={href} className="text-xs text-white/40 hover:text-white/70 transition-colors block">{l}</a>
                 ))}
               </div>
             </div>
