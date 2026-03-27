@@ -383,7 +383,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <a href="mailto:security@foritech.bg"
+                <a href="/notary"
+              className="text-xs text-[#00FF88] border border-[#00FF88]/30 px-3 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
+              NOTARY API
+            </a>
+            <a href="mailto:security@foritech.bg"
                   className={`block text-center text-xs py-3 tracking-wider transition-colors ${
                     plan.highlight
                       ? "bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90"
