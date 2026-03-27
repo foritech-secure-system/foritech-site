@@ -1,3 +1,57 @@
+"use client";
+import { useState } from "react";
+
+function VerifyWidget() {
+  const [token, setToken] = useState("");
+  const [result, setResult] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  const verify = async () => {
+    if (!token.trim()) return;
+    setLoading(true);
+    setResult(null);
+    try {
+      const encoded = encodeURIComponent(token.trim());
+      const r = await fetch(`https://notary.foritech.bg/notary/verify/${encoded}`);
+      const d = await r.json();
+      setResult(d);
+    } catch {
+      setResult({ error: "Request failed" });
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="space-y-4">
+      <textarea
+        value={token}
+        onChange={e => setToken(e.target.value)}
+        rows={3}
+        placeholder="Paste your notarization token here..."
+        className="w-full bg-white/5 border border-white/10 px-4 py-3 text-xs text-white placeholder-white/20 focus:outline-none focus:border-[#00FF88]/40 resize-none font-mono"
+      />
+      <button onClick={verify} disabled={loading}
+        className="bg-[#00FF88] text-black px-6 py-2.5 text-xs font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors disabled:opacity-50">
+        {loading ? "VERIFYING..." : "VERIFY TOKEN →"}
+      </button>
+      {result && (
+        <div className={`border p-4 ${result.valid ? "border-[#00FF88]/30 bg-[#00FF88]/5" : "border-red-500/30 bg-red-500/5"}`}>
+          <div className={`text-sm font-bold mb-2 ${result.valid ? "text-[#00FF88]" : "text-red-400"}`}>
+            {result.error ? "ERROR" : result.valid ? "✓ VALID" : "✗ INVALID"}
+          </div>
+          {!result.error && (
+            <div className="space-y-1 text-xs text-white/50">
+              <div>Timestamp: {result.timestamp ? new Date(result.timestamp * 1000).toISOString() : "-"}</div>
+              <div>Issuer: {result.issuer}</div>
+              <div>Algorithm: {result.sig_alg}</div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export const metadata = {
   title: "Foritech Notary API — Post-Quantum Proof of Existence",
   description: "Timestamp your data with post-quantum cryptographic proof. ML-DSA-65 signed tokens via a single API call.",
@@ -27,20 +81,22 @@ export default function NotaryPage() {
             Timestamp your data with<br />
             <span className="text-[#00FF88]">post-quantum cryptographic proof.</span>
           </h1>
-          <p className="text-white/50 text-base max-w-2xl mb-8">
+          <p className="text-white/50 text-base max-w-2xl mb-4">
             Foritech Notary creates a ML-DSA-65 signed proof-of-existence token for any data hash.
             No blockchain. No middleman. Verifiable offline.
           </p>
-          <div className="flex flex-wrap gap-4 mb-8">
-            <a href="https://notary.foritech.bg/notary/info" target="_blank"
-              className="bg-[#00FF88] text-black px-6 py-3 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
-              TRY API →
-            </a>
+          <p className="text-xs text-white/40 mb-6">AI can fake anything. This proves what is real.</p>
+          <div className="flex flex-wrap gap-4 mb-4">
             <a href="mailto:security@foritech.bg"
+              className="bg-[#00FF88] text-black px-6 py-3 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
+              START FOR FREE →
+            </a>
+            <a href="https://notary.foritech.bg/notary/info" target="_blank"
               className="border border-white/20 text-white/70 px-6 py-3 text-sm tracking-wider hover:border-white/40 transition-colors">
-              GET API KEY
+              VIEW API DOCS
             </a>
           </div>
+          <div className="text-xs text-white/30 mb-6">Free tier — no credit card required.</div>
           <div className="flex flex-wrap gap-6 text-xs text-white/30 tracking-wider">
             <span>✓ PQC-SECURED (ML-DSA-65)</span>
             <span>✓ NO BLOCKCHAIN NEEDED</span>
@@ -103,6 +159,13 @@ print(base64.b64encode(h).decode())
 }`}</pre>
             </div>
           </div>
+        </div>
+
+        {/* VERIFY UI */}
+        <div className="mb-16">
+          <div className="text-xs text-white/30 tracking-[0.3em] mb-4">VERIFY A TOKEN</div>
+          <p className="text-white/40 text-sm mb-6">Paste a notarization token to verify its authenticity.</p>
+          <VerifyWidget />
         </div>
 
         {/* USE CASES */}
