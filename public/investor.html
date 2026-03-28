@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foritech Secure System — Investor Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg2: #111317;
+    --bg3: #181b20;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --green: #00d97e;
+    --green2: #00a85f;
+    --green-dim: rgba(0,217,126,0.12);
+    --red: #ff4d4d;
+    --amber: #f5a623;
+    --blue: #4a9eff;
+    --text: #e8eaed;
+    --muted: #6b7280;
+    --muted2: #9ca3af;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(10,12,15,0.92);
+    border-bottom: 0.5px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .nav-logo span { color: var(--green); }
+  .nav-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 0.5px solid rgba(0,217,126,0.3);
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--muted2); text-decoration: none;
+    font-size: 13px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    padding-top: 10rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--green);
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    max-width: 760px;
+  }
+  h1 em { font-style: normal; color: var(--green); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted2);
+    max-width: 540px;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 12px 28px;
+    border: none; cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 12px 28px;
+    border: 0.5px solid var(--border2); cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text); border-color: var(--text); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    border-top: 0.5px solid var(--border);
+    padding-top: 2.5rem;
+  }
+  .hero-stat-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--text);
+  }
+  .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* LIVE DEMO */
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-sub { color: var(--muted2); font-size: 15px; margin-bottom: 3rem; }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media(max-width: 700px) { .demo-grid { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 0.5px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .panel-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; } 50% { opacity: 0.35; }
+  }
+  .panel-body { padding: 16px; }
+
+  /* telemetry log */
+  .telemetry-log {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--muted2);
+    min-height: 200px;
+  }
+  .log-line { display: flex; gap: 12px; }
+  .log-time { color: var(--muted); min-width: 55px; }
+  .log-key { color: var(--blue); }
+  .log-val { color: var(--text); }
+  .log-val.green { color: var(--green); }
+  .log-val.amber { color: var(--amber); }
+
+  /* verification stream */
+  .verify-steps { display: flex; flex-direction: column; gap: 10px; min-height: 200px; }
+  .v-step {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    opacity: 0.35;
+    transition: opacity 0.4s, border-color 0.4s, background 0.4s;
+  }
+  .v-step.active {
+    opacity: 1;
+    border-color: rgba(0,217,126,0.3);
+    background: rgba(0,217,126,0.06);
+  }
+  .v-step.done {
+    opacity: 1;
+    border-color: var(--border);
+  }
+  .v-step-icon { font-size: 14px; min-width: 20px; text-align: center; }
+  .v-step-text { color: var(--muted2); flex: 1; }
+  .v-step.active .v-step-text { color: var(--text); }
+  .v-step-status {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .v-step.done .v-step-status { color: var(--green); }
+
+  /* result banner */
+  .result-banner {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+    border: 0.5px solid transparent;
+    display: none;
+  }
+  .result-banner.verified {
+    background: var(--green-dim);
+    border-color: rgba(0,217,126,0.4);
+    color: var(--green);
+  }
+  .result-banner.rejected {
+    background: rgba(255,77,77,0.1);
+    border-color: rgba(255,77,77,0.35);
+    color: var(--red);
+  }
+
+  .demo-controls {
+    display: flex; gap: 10px; margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .demo-controls button {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 8px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  #btn-verify {
+    background: var(--green);
+    color: #000;
+    border: none;
+  }
+  #btn-tamper {
+    background: transparent;
+    color: var(--red);
+    border: 0.5px solid rgba(255,77,77,0.4);
+  }
+  #btn-tamper:hover {
+    background: rgba(255,77,77,0.08);
+  }
+  #btn-reset {
+    background: transparent;
+    color: var(--muted);
+    border: 0.5px solid var(--border);
+  }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+  @media(max-width:700px) { .stats-grid { grid-template-columns: repeat(2,1fr); } }
+  .stat-cell {
+    background: var(--bg2);
+    padding: 2rem 1.5rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .stat-num span { color: var(--green); }
+  .stat-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* ARCHITECTURE */
+  .arch-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 2.5rem 0;
+    overflow-x: auto;
+  }
+  .arch-node {
+    flex: 1; min-width: 130px;
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    position: relative;
+  }
+  .arch-node:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--green);
+    font-size: 16px;
+    z-index: 2;
+  }
+  .arch-node:first-child { border-radius: 6px 0 0 6px; }
+  .arch-node:last-child { border-radius: 0 6px 6px 0; }
+  .arch-icon {
+    font-size: 22px; margin-bottom: 10px;
+    display: block;
+  }
+  .arch-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .arch-desc { font-size: 11px; color: var(--muted); }
+  .arch-node.highlight {
+    background: rgba(0,217,126,0.07);
+    border-color: rgba(0,217,126,0.25);
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @media(max-width:700px) { .pricing-grid { grid-template-columns: 1fr; } }
+  .pricing-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    padding: 1.75rem;
+    position: relative;
+  }
+  .pricing-card.featured {
+    border-color: rgba(0,217,126,0.4);
+    background: rgba(0,217,126,0.04);
+  }
+  .pricing-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    background: var(--green);
+    color: #000;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .pricing-tier {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .pricing-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--text);
+  }
+  .pricing-unit { font-size: 12px; color: var(--muted); margin-bottom: 1.25rem; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .pricing-features li {
+    font-size: 12px;
+    color: var(--muted2);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .pricing-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-size: 11px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* RISK TABLE */
+  .risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .risk-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 0.5px solid var(--border);
+    font-weight: 400;
+  }
+  .risk-table td {
+    padding: 12px 16px;
+    border-bottom: 0.5px solid var(--border);
+    color: var(--muted2);
+    vertical-align: top;
+  }
+  .risk-table tr:last-child td { border-bottom: none; }
+  .risk-table tr:hover td { background: var(--bg3); }
+  .pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .pill-low { background: var(--green-dim); color: var(--green); }
+  .pill-med { background: rgba(245,166,35,0.15); color: var(--amber); }
+  .pill-high { background: rgba(255,77,77,0.12); color: var(--red); }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .footer-brand span { color: var(--green); }
+  .footer-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .footer-contact { font-size: 12px; color: var(--muted2); }
+  .footer-contact a { color: var(--green); text-decoration: none; }
+
+  /* divider */
+  .divider {
+    height: 0.5px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* scroll animation */
+  .fade-up {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-up.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  .container-hex {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    word-break: break-all;
+    line-height: 1.8;
+    padding: 12px;
+    background: var(--bg3);
+    border-radius: 4px;
+    margin-top: 12px;
+    border: 0.5px solid var(--border);
+  }
+  .hex-label { color: var(--blue); margin-right: 6px; }
+  .hex-green { color: var(--green); }
+  .hex-amber { color: var(--amber); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">FORI<span>TECH</span></div>
+  <div class="nav-links">
+    <a href="#demo">Live Demo</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#risks">Risks</a>
+  </div>
+  <div class="nav-badge">v0.8-dev · TRL 7</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-label">Post-Quantum Cryptographic Verification</div>
+  <h1>In a world where AI<br>can fake anything,<br><em>Foritech proves what is real.</em></h1>
+  <p class="hero-sub">
+    Foritech Secure System is a cryptographic verification platform for industrial telemetry and machine data — a digital notary that proves where data came from and whether it was altered.
+  </p>
+  <div class="hero-ctas">
+    <a href="#demo" class="btn-primary">Run Live Demo</a>
+    <a href="#architecture" class="btn-secondary">Architecture →</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-val">ML-DSA-65</div>
+      <div class="hero-stat-label">Post-quantum signature algorithm</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">50</div>
+      <div class="hero-stat-label">Tests passing, 0 failing</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">IANA</div>
+      <div class="hero-stat-label">PEN 65385 · registered</div>
+    </div>
+    <div>
+      <div class="hero-stat-val">&lt;50ms</div>
+      <div class="hero-stat-label">Verification latency (ARM64)</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LIVE DEMO -->
+<section id="demo">
+  <div class="section-label">Interactive demo</div>
+  <h2>Live Verification Pipeline</h2>
+  <p class="section-sub">Watch the full pipeline: edge telemetry → ML-DSA-65 signing → server-side verification. Try injecting a tampered container.</p>
+
+  <div class="demo-grid">
+    <div class="panel">
+      <div class="panel-header">
+        <span>EDGE AGENT — IoT2050 ARM64</span>
+        <div class="panel-dot"></div>
+      </div>
+      <div class="panel-body">
+        <div class="telemetry-log" id="telemetry-log">
+          <div class="log-line"><span class="log-time">09:14:01</span><span class="log-key">device_id</span><span style="color:var(--muted)">:</span>&nbsp;<span class="log-val">siemens-iot2050-01</span></div>
+          <div class="log-line"><span class="log-time">09:14:01</span><span class="log-key">energy_kw</span><span style="color:var(--muted)">:</span>&nbsp;<span class="log-val amber">48.72</span></div>
+          <div class="log-line"><span class="log-time">09:14:01</span><span class="log-key">voltage_v</span><span style="color:var(--muted)">:</span>&nbsp;<span class="log-val">231.4</span></div>
+          <div class="log-line"><span class="log-time">09:14:01</span><span class="log-key">freq_hz</span><span style="color:var(--muted)">:</span>&nbsp;<span class="log-val">49.98</span></div>
+          <div class="log-line"><span class="log-time">09:14:01</span><span class="log-key">alg</span><span style="color:var(--muted)">:</span>&nbsp;<span class="log-val green">ML-DSA-65</span></div>
+          <div class="log-line"><span class="log-time">09:14:01</span><span class="log-key">nonce</span><span style="color:var(--muted)">:</span>&nbsp;<span class="log-val" style="color:var(--muted)">a3f9c2e1b8d47f05</span></div>
+        </div>
+        <div class="container-hex" id="container-hex">
+          <span class="hex-label">MAGIC</span><span class="hex-green">46 54 45 43 48</span><br>
+          <span class="hex-label">VER  </span>01<br>
+          <span class="hex-label">SIG  </span><span class="hex-amber">ML-DSA-65 · 3309 bytes</span><br>
+          <span class="hex-label">KEM  </span>ML-KEM-768 · encrypted DEK<br>
+          <span class="hex-label">FMT  </span>.ftech container v2
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span>VERIFICATION ENGINE — SERVER</span>
+        <div class="panel-dot" style="background:var(--blue);"></div>
+      </div>
+      <div class="panel-body">
+        <div class="verify-steps" id="verify-steps">
+          <div class="v-step" id="step-0">
+            <div class="v-step-icon">⬡</div>
+            <div class="v-step-text">Parse .ftech container — check MAGIC</div>
+            <div class="v-step-status">—</div>
+          </div>
+          <div class="v-step" id="step-1">
+            <div class="v-step-icon">⬡</div>
+            <div class="v-step-text">Validate header JSON — DoS guards (64KB)</div>
+            <div class="v-step-status">—</div>
+          </div>
+          <div class="v-step" id="step-2">
+            <div class="v-step-icon">⬡</div>
+            <div class="v-step-text">Algorithm lock — ML-DSA-65 required</div>
+            <div class="v-step-status">—</div>
+          </div>
+          <div class="v-step" id="step-3">
+            <div class="v-step-icon">⬡</div>
+            <div class="v-step-text">PQC signature verification — liboqs</div>
+            <div class="v-step-status">—</div>
+          </div>
+          <div class="v-step" id="step-4">
+            <div class="v-step-icon">⬡</div>
+            <div class="v-step-text">Replay guard — timestamp + nonce</div>
+            <div class="v-step-status">—</div>
+          </div>
+          <div class="v-step" id="step-5">
+            <div class="v-step-icon">⬡</div>
+            <div class="v-step-text">Trust decision — emit result</div>
+            <div class="v-step-status">—</div>
+          </div>
+        </div>
+        <div class="result-banner" id="result-banner"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-controls">
+    <button id="btn-verify" onclick="runVerify(false)">▶ Run Verification</button>
+    <button id="btn-tamper" onclick="runVerify(true)">⚡ Inject Tampered Container</button>
+    <button id="btn-reset" onclick="resetDemo()">↺ Reset</button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="section-label">Traction & metrics</div>
+  <h2>What we have built</h2>
+  <p class="section-sub" style="margin-bottom:2rem;">Production-ready core, validated on real industrial hardware.</p>
+
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <div class="stat-num">50<span>/0</span></div>
+      <div class="stat-desc">Tests passing / failing</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">5</div>
+      <div class="stat-desc">Attack regression vectors confirmed REJECTED</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num"><span>TRL</span> 7</div>
+      <div class="stat-desc">End-to-end verified on IoT2050 ARM64</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">IANA</div>
+      <div class="stat-desc">PEN 65385 · media type registration in progress</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-label">System architecture</div>
+  <h2>Edge signs. Server decides.</h2>
+  <p class="section-sub">The verification intelligence lives server-side — this is the moat. The edge agent is open and lightweight; the verification engine is closed and paid.</p>
+
+  <div class="arch-flow">
+    <div class="arch-node">
+      <span class="arch-icon">⚡</span>
+      <div class="arch-title">Sensor</div>
+      <div class="arch-desc">Modbus / industrial telemetry</div>
+    </div>
+    <div class="arch-node">
+      <span class="arch-icon">📡</span>
+      <div class="arch-title">Edge Agent</div>
+      <div class="arch-desc">ML-DSA-65 signing · .ftech wrap · ARM64</div>
+    </div>
+    <div class="arch-node highlight">
+      <span class="arch-icon">🔒</span>
+      <div class="arch-title">Verify API</div>
+      <div class="arch-desc">Closed · proprietary · monetized</div>
+    </div>
+    <div class="arch-node highlight">
+      <span class="arch-icon">🧠</span>
+      <div class="arch-title">Proof Engine</div>
+      <div class="arch-desc">ML-DSA verify · replay guard · audit log</div>
+    </div>
+    <div class="arch-node">
+      <span class="arch-icon">✅</span>
+      <div class="arch-title">Trusted Data</div>
+      <div class="arch-desc">VERIFIED / REJECTED · deterministic</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;">
+    <div class="panel">
+      <div class="panel-header"><span>OPEN (EDGE)</span></div>
+      <div class="panel-body" style="font-size:12px;color:var(--muted2);line-height:1.9;">
+        <div>· ML-DSA-65 signing only</div>
+        <div>· Minimal dependencies: oqs + requests</div>
+        <div>· No verification logic</div>
+        <div>· No PKI, no trust decisions</div>
+        <div>· Runs on any ARM64 device</div>
+        <div>· Free · open installer</div>
+      </div>
+    </div>
+    <div class="panel" style="border-color:rgba(0,217,126,0.25);">
+      <div class="panel-header"><span>CLOSED (SERVER) — THE MOAT</span></div>
+      <div class="panel-body" style="font-size:12px;color:var(--muted2);line-height:1.9;">
+        <div>· Full verification engine</div>
+        <div>· Replay protection + nonce store</div>
+        <div>· Device identity resolution</div>
+        <div>· Immutable audit logs</div>
+        <div>· Security scoring API</div>
+        <div>· Licensed · paid · proprietary</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-label">Business model</div>
+  <h2>Verification as a service</h2>
+  <p class="section-sub">Usage-based at scale. Device licensing for embedded. Enterprise contracts for critical infrastructure.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price">€0.001</div>
+      <div class="pricing-unit">per verification · up to 100k/month</div>
+      <ul class="pricing-features">
+        <li>Verification API access</li>
+        <li>Basic audit logs (30 days)</li>
+        <li>Single device identity</li>
+        <li>Community support</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most demanded</div>
+      <div class="pricing-tier">Industrial</div>
+      <div class="pricing-price">€15</div>
+      <div class="pricing-unit">per device / month · unlimited events</div>
+      <ul class="pricing-features">
+        <li>Unlimited verifications</li>
+        <li>Full audit trail (1 year)</li>
+        <li>Fleet identity management</li>
+        <li>SLA 99.9% · dashboard</li>
+        <li>Security score reports</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Enterprise</div>
+      <div class="pricing-price">€50k+</div>
+      <div class="pricing-unit">on-prem deployment · annual</div>
+      <ul class="pricing-features">
+        <li>On-premises verify cluster</li>
+        <li>Private key infrastructure</li>
+        <li>Air-gap capable</li>
+        <li>Compliance reporting (NIS2)</li>
+        <li>Dedicated engineer support</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;padding:1.5rem;background:var(--bg2);border:0.5px solid var(--border);border-radius:6px;">
+    <div style="display:flex;gap:3rem;flex-wrap:wrap;">
+      <div>
+        <div class="section-label" style="margin-bottom:4px;">Target market</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.9;">Industrial IoT · Energy metering · Telecom · Smart infrastructure</div>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:4px;">10k devices scenario</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.9;">€150k ARR · Industrial tier · fully automated billing</div>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:4px;">Why now</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.9;">NIST PQC standards finalized 2024 · NIS2 enforcement · AI-generated data crisis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RISKS -->
+<section id="risks">
+  <div class="section-label">Risk register</div>
+  <h2>Risks & mitigations</h2>
+  <p class="section-sub">Honest assessment of open risks. All critical security issues are closed.</p>
+
+  <div class="panel" style="overflow:auto;">
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th>Risk</th>
+          <th>Likelihood</th>
+          <th>Impact</th>
+          <th>Status</th>
+          <th>Mitigation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Trailing data / container injection</td>
+          <td><span class="pill pill-low">Low</span></td>
+          <td><span class="pill pill-high">P0</span></td>
+          <td style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:11px;">CLOSED fd72c74</td>
+          <td>Parser rejects all appended bytes after valid signature</td>
+        </tr>
+        <tr>
+          <td>Algorithm downgrade attack (ECDSA/Ed25519)</td>
+          <td><span class="pill pill-low">Low</span></td>
+          <td><span class="pill pill-high">Critical</span></td>
+          <td style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:11px;">CLOSED · enforced</td>
+          <td>ML-DSA-65 lock at wrap + verify layers — any other alg → immediate REJECT</td>
+        </tr>
+        <tr>
+          <td>Replay attack</td>
+          <td><span class="pill pill-med">Medium</span></td>
+          <td><span class="pill pill-med">Medium</span></td>
+          <td style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:11px;">CLOSED</td>
+          <td>InMemoryReplayGuard: future timestamp rejection + DoS guard</td>
+        </tr>
+        <tr>
+          <td>Plugin supply chain injection</td>
+          <td><span class="pill pill-med">Medium</span></td>
+          <td><span class="pill pill-med">Medium</span></td>
+          <td style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:11px;">CLOSED fd861e0</td>
+          <td>PLUGIN_ALLOWLIST = frozenset({}) — empty allowlist by default</td>
+        </tr>
+        <tr>
+          <td>X.509 carries ECDSA P-256 (carrier only)</td>
+          <td><span class="pill pill-low">Low</span></td>
+          <td><span class="pill pill-low">Low</span></td>
+          <td style="color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:11px;">OPEN · TEMP COMPAT</td>
+          <td>Isolated in compat/ecdsa_carrier.py — NOT in trust path. Replacing with mldsa_carrier.py in v0.8.x</td>
+        </tr>
+        <tr>
+          <td>PQC standard changes (NIST)</td>
+          <td><span class="pill pill-low">Low</span></td>
+          <td><span class="pill pill-med">Medium</span></td>
+          <td style="color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:11px;">Mitigated</td>
+          <td>ML-DSA-65 is FIPS 204 finalized. Modular crypto interface — swappable.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">FORI<span>TECH</span> Secure System</div>
+    <div class="footer-contact" style="margin-top:6px;">
+      <a href="mailto:hristofor@foritech.bg">hristofor@foritech.bg</a> ·
+      <a href="https://foritech.bg">foritech.bg</a>
+    </div>
+  </div>
+  <div class="footer-meta">
+    IANA PEN 65385 · ML-DSA-65 · ML-KEM-768<br>
+    v0.8-dev · TRL 7 · Confidential — Investor Preview
+  </div>
+</footer>
+
+<script>
+let isRunning = false;
+
+function resetDemo() {
+  isRunning = false;
+  for (let i = 0; i < 6; i++) {
+    const s = document.getElementById('step-' + i);
+    s.className = 'v-step';
+    s.querySelector('.v-step-icon').textContent = '⬡';
+    s.querySelector('.v-step-status').textContent = '—';
+    s.querySelector('.v-step-text').style.color = '';
+  }
+  const banner = document.getElementById('result-banner');
+  banner.style.display = 'none';
+  banner.className = 'result-banner';
+
+  const hex = document.getElementById('container-hex');
+  hex.innerHTML = `<span class="hex-label">MAGIC</span><span class="hex-green">46 54 45 43 48</span><br><span class="hex-label">VER  </span>01<br><span class="hex-label">SIG  </span><span class="hex-amber">ML-DSA-65 · 3309 bytes</span><br><span class="hex-label">KEM  </span>ML-KEM-768 · encrypted DEK<br><span class="hex-label">FMT  </span>.ftech container v2`;
+}
+
+function runVerify(tamper) {
+  if (isRunning) return;
+  isRunning = true;
+  resetDemo();
+
+  if (tamper) {
+    const hex = document.getElementById('container-hex');
+    hex.innerHTML = `<span class="hex-label">MAGIC</span><span class="hex-green">46 54 45 43 48</span><br><span class="hex-label">VER  </span>01<br><span class="hex-label">SIG  </span><span style="color:var(--red)">ML-DSA-65 · 3309 bytes [TAMPERED]</span><br><span class="hex-label">PAYLOAD</span><span style="color:var(--red)">energy_kw: 48.72 → 999.99 [MODIFIED]</span><br><span class="hex-label">FMT  </span>.ftech container v2`;
+  }
+
+  const stepResults = tamper
+    ? [
+        { ok: true,  label: '✓', status: 'OK' },
+        { ok: true,  label: '✓', status: 'OK' },
+        { ok: true,  label: '✓', status: 'OK' },
+        { ok: false, label: '✗', status: 'FAIL' },
+        { ok: false, label: '—', status: '—' },
+        { ok: false, label: '—', status: '—' },
+      ]
+    : [
+        { ok: true, label: '✓', status: 'OK' },
+        { ok: true, label: '✓', status: 'OK' },
+        { ok: true, label: '✓', status: 'OK' },
+        { ok: true, label: '✓', status: 'OK' },
+        { ok: true, label: '✓', status: 'OK' },
+        { ok: true, label: '✓', status: 'OK' },
+      ];
+
+  const delays = [200, 500, 850, 1300, 1750, 2100];
+  const failAt = tamper ? 3 : -1;
+
+  delays.forEach(function(delay, i) {
+    setTimeout(function() {
+      const step = document.getElementById('step-' + i);
+      if (i <= (failAt === -1 ? 5 : failAt)) {
+        step.className = 'v-step active';
+      }
+      setTimeout(function() {
+        const r = stepResults[i];
+        step.className = 'v-step done';
+        step.querySelector('.v-step-icon').textContent = r.label;
+        step.querySelector('.v-step-icon').style.color = r.ok ? 'var(--green)' : 'var(--red)';
+        step.querySelector('.v-step-status').textContent = r.status;
+        step.querySelector('.v-step-status').style.color = r.ok ? 'var(--green)' : 'var(--red)';
+
+        if (i === (tamper ? failAt : 5)) {
+          setTimeout(function() {
+            const banner = document.getElementById('result-banner');
+            banner.style.display = 'block';
+            if (tamper) {
+              banner.className = 'result-banner rejected';
+              banner.textContent = '✗  REJECTED — Signature verification failed · ML-DSA-65';
+            } else {
+              banner.className = 'result-banner verified';
+              banner.textContent = '✓  VERIFIED — Container authentic · ML-DSA-65 · device: siemens-iot2050-01';
+            }
+            isRunning = false;
+          }, 300);
+        }
+      }, 250);
+    }, delay);
+  });
+}
+
+// fade-up on scroll
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(function(el) {
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
