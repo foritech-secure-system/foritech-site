@@ -345,7 +345,7 @@ export default function Home() {
                 period: "forever",
                 features: ["1 device", "100 verifications/day", "Community support", "Edge Agent included"],
                 cta: "Start free",
-                href: "mailto:security@foritech.bg",
+                href: "https://buy.stripe.com/cNi28r29X0uq7YNfbVfbq00",
                 highlight: false,
               },
               {
@@ -354,7 +354,7 @@ export default function Home() {
                 period: "per month",
                 features: ["10 devices", "50,000 verifications/month", "API access", "Audit logs", "Email support"],
                 cta: "Subscribe →",
-                href: "https://buy.stripe.com/test_aFabJ1dRudgTh0R0vP9EI00",
+                href: "https://buy.stripe.com/4gM7sLbKx0uq4MB3tdfbq01",
                 highlight: false,
               },
               {
@@ -363,7 +363,7 @@ export default function Home() {
                 period: "per month",
                 features: ["50 devices", "500,000 verifications/month", "Priority support", "Compliance reports", "SLA"],
                 cta: "Subscribe →",
-                href: "https://buy.stripe.com/test_5kQ14n14I0u78ulemF9EI01",
+                href: "https://buy.stripe.com/aFafZh15T2Cyenb9RBfbq02",
                 highlight: true,
               },
               {
