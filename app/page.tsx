@@ -387,7 +387,8 @@ export default function Home() {
               className="text-xs text-[#00FF88] border border-[#00FF88]/30 px-3 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
               NOTARY API
             </a>
-            <a href="mailto:security@foritech.bg"
+            <a href={plan.cta === "Contact us" ? "mailto:security@foritech.bg" : "https://formspree.io/f/xzdjnlgg"}
+                  target={plan.cta === "Contact us" ? undefined : "_blank"}
                   className={`block text-center text-xs py-3 tracking-wider transition-colors ${
                     plan.highlight
                       ? "bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90"
