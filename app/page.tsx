@@ -338,13 +338,14 @@ export default function Home() {
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
           <h2 className="text-3xl font-bold mb-16">Edge is free. Verification is the product.</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
+            [
               {
                 name: "FREE",
                 price: "€0",
                 period: "forever",
                 features: ["1 device", "100 verifications/day", "Community support", "Edge Agent included"],
                 cta: "Start free",
+                href: "mailto:security@foritech.bg",
                 highlight: false,
               },
               {
@@ -352,7 +353,8 @@ export default function Home() {
                 price: "€99",
                 period: "per month",
                 features: ["10 devices", "50,000 verifications/month", "API access", "Audit logs", "Email support"],
-                cta: "Start trial",
+                cta: "Subscribe →",
+                href: "https://buy.stripe.com/test_aFabJ1dRudgTh0R0vP9EI00",
                 highlight: false,
               },
               {
@@ -360,7 +362,8 @@ export default function Home() {
                 price: "€499",
                 period: "per month",
                 features: ["50 devices", "500,000 verifications/month", "Priority support", "Compliance reports", "SLA"],
-                cta: "Start trial",
+                cta: "Subscribe →",
+                href: "https://buy.stripe.com/test_5kQ14n14I0u78ulemF9EI01",
                 highlight: true,
               },
               {
@@ -369,6 +372,7 @@ export default function Home() {
                 period: "",
                 features: ["Unlimited devices", "Unlimited verifications", "On-prem cluster", "Dedicated support", "Custom SLA"],
                 cta: "Contact us",
+                href: "mailto:security@foritech.bg",
                 highlight: false,
               },
             ].map((plan, i) => (
@@ -387,8 +391,8 @@ export default function Home() {
               className="text-xs text-[#00FF88] border border-[#00FF88]/30 px-3 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
               NOTARY API
             </a>
-            <a href={plan.cta === "Contact us" ? "mailto:security@foritech.bg" : "https://formspree.io/f/xzdjnlgg"}
-                  target={plan.cta === "Contact us" ? undefined : "_blank"}
+            <a href={plan.href}
+                  target={plan.href.startsWith("mailto") ? undefined : "_blank"}
                   className={`block text-center text-xs py-3 tracking-wider transition-colors ${
                     plan.highlight
                       ? "bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90"
