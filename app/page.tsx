@@ -338,7 +338,7 @@ export default function Home() {
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
           <h2 className="text-3xl font-bold mb-16">Edge is free. Verification is the product.</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            [
+            {[
               {
                 name: "FREE",
                 price: "€0",
