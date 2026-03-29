@@ -85,7 +85,7 @@ export default function Home() {
             <a href="#how" className="hover:text-white/80 transition-colors">HOW IT WORKS</a>
             <a href="#demo" className="hover:text-white/80 transition-colors">DEMO</a>
             <a href="#pricing" className="hover:text-white/80 transition-colors">PRICING</a>
-            <a href="#investors" className="hover:text-white/80 transition-colors">INVESTORS</a>
+            <a href="https://www.foritech.bg/investor.html" className="hover:text-white/80 transition-colors">INVESTORS</a>
           </div>
           <a href="mailto:security@foritech.bg"
             className="text-xs border border-[#00FF88]/40 text-[#00FF88] px-4 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
@@ -115,7 +115,7 @@ export default function Home() {
                   className="bg-[#00FF88] text-black px-6 py-3 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
                   TRY WITH YOUR DEVICE
                 </a>
-                <a href="#investors"
+                <a href="https://www.foritech.bg/investor.html"
                   className="border border-white/20 text-white/70 px-6 py-3 text-sm tracking-wider hover:border-white/40 hover:text-white transition-colors">
                   FOR INVESTORS
                 </a>
