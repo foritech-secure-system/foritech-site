@@ -1,0 +1,232 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-mono, 'Courier New', monospace); }
+.db { padding: 1rem 0; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.25rem; }
+.kpi { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; }
+.kpi-label { font-size: 11px; color: var(--color-text-secondary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.kpi-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.kpi-value.green { color: var(--color-text-success); }
+.kpi-value.red { color: var(--color-text-danger); }
+.kpi-value.warn { color: var(--color-text-warning); }
+.kpi-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 3px; }
+.section { margin-bottom: 1.25rem; }
+.sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.sec-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-secondary); font-weight: 500; }
+.badge { font-size: 10px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
+.badge-live { background: var(--color-background-success); color: var(--color-text-success); }
+.badge-warn { background: var(--color-background-warning); color: var(--color-text-warning); }
+.event-feed { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+.event-row { display: grid; grid-template-columns: 130px 1fr 80px 70px; gap: 8px; align-items: center; padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; }
+.event-row:last-child { border-bottom: none; }
+.event-row:hover { background: var(--color-background-secondary); }
+.event-head { background: var(--color-background-secondary); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-tertiary); font-weight: 500; }
+.ts { color: var(--color-text-secondary); font-family: var(--font-mono); }
+.dev { color: var(--color-text-primary); font-family: var(--font-mono); }
+.status-ok { color: var(--color-text-success); font-weight: 500; }
+.status-fail { color: var(--color-text-danger); font-weight: 500; }
+.status-warn { color: var(--color-text-warning); font-weight: 500; }
+.lat { color: var(--color-text-tertiary); text-align: right; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+.device-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.device-row:last-child { border-bottom: none; }
+.device-id { font-size: 12px; font-family: var(--font-mono); color: var(--color-text-primary); }
+.device-meta { font-size: 11px; color: var(--color-text-tertiary); }
+.dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.dot-ok { background: var(--color-text-success); }
+.dot-off { background: var(--color-text-tertiary); }
+.sec-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; }
+.sec-row:last-child { border-bottom: none; }
+.sec-type { color: var(--color-text-primary); }
+.sec-count { font-family: var(--font-mono); font-weight: 500; }
+.sec-count.red { color: var(--color-text-danger); }
+.sec-count.ok { color: var(--color-text-success); }
+.infra-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 12px; }
+.infra-row:last-child { border-bottom: none; }
+.infra-name { font-family: var(--font-mono); color: var(--color-text-primary); }
+.pill { font-size: 10px; padding: 2px 8px; border-radius: 99px; }
+.pill-ok { background: var(--color-background-success); color: var(--color-text-success); }
+.pill-warn { background: var(--color-background-warning); color: var(--color-text-warning); }
+.pill-off { background: var(--color-background-secondary); color: var(--color-text-tertiary); }
+.footer { font-size: 11px; color: var(--color-text-tertiary); margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+.access-note { font-size: 11px; background: var(--color-background-warning); color: var(--color-text-warning); border-radius: var(--border-radius-md); padding: 8px 12px; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+</style>
+
+<div class="db">
+
+<div class="access-note">
+  <span style="font-weight:500;">WireGuard only</span>
+  <span style="color:var(--color-text-secondary)">— dashboard bind: wg0 interface · 10.x.x.x:3000 · no public exposure</span>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Active devices</div>
+    <div class="kpi-value" id="kv-devices">4</div>
+    <div class="kpi-sub">of 4 registered</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Verifications / hr</div>
+    <div class="kpi-value green" id="kv-verif">1,247</div>
+    <div class="kpi-sub">ML-DSA-65 only</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Reject rate</div>
+    <div class="kpi-value" id="kv-reject">0.4%</div>
+    <div class="kpi-sub" id="kv-reject-sub">3 events today</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Security flags</div>
+    <div class="kpi-value warn" id="kv-flags">1</div>
+    <div class="kpi-sub">replay attempt</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">
+    <span class="sec-title">Verification feed</span>
+    <span class="badge badge-live" id="live-badge">● live</span>
+  </div>
+  <div class="event-feed">
+    <div class="event-row event-head">
+      <span>timestamp</span><span>device_id</span><span>status</span><span style="text-align:right">latency</span>
+    </div>
+    <div id="feed"></div>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="card">
+    <div class="sec-head" style="margin-bottom:10px">
+      <span class="sec-title">Devices</span>
+    </div>
+    <div class="device-row">
+      <div><span class="dot dot-ok"></span><span class="device-id">iot2050-001</span></div>
+      <span class="device-meta">last 2s</span>
+    </div>
+    <div class="device-row">
+      <div><span class="dot dot-ok"></span><span class="device-id">iot2050-002</span></div>
+      <span class="device-meta">last 4s</span>
+    </div>
+    <div class="device-row">
+      <div><span class="dot dot-ok"></span><span class="device-id">gateway-plc-01</span></div>
+      <span class="device-meta">last 11s</span>
+    </div>
+    <div class="device-row">
+      <div><span class="dot dot-off"></span><span class="device-id">sensor-node-07</span></div>
+      <span class="device-meta" style="color:var(--color-text-tertiary)">offline 3m</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-head" style="margin-bottom:10px">
+      <span class="sec-title">Security events</span>
+    </div>
+    <div class="sec-row">
+      <span class="sec-type">Replay attempts</span>
+      <span class="sec-count red">1</span>
+    </div>
+    <div class="sec-row">
+      <span class="sec-type">Tamper detected</span>
+      <span class="sec-count ok">0</span>
+    </div>
+    <div class="sec-row">
+      <span class="sec-type">Malformed containers</span>
+      <span class="sec-count ok">0</span>
+    </div>
+    <div class="sec-row">
+      <span class="sec-type">Algo downgrade attempts</span>
+      <span class="sec-count ok">0</span>
+    </div>
+    <div class="sec-row">
+      <span class="sec-type">Plugin violations</span>
+      <span class="sec-count ok">0</span>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:10px">
+  <div class="sec-head">
+    <span class="sec-title">Infrastructure</span>
+  </div>
+  <div class="card">
+    <div class="infra-row">
+      <span class="infra-name">verify-api :8080</span>
+      <span class="pill pill-ok">running · local only</span>
+    </div>
+    <div class="infra-row">
+      <span class="infra-name">edge-api :9200</span>
+      <span class="pill pill-ok">running</span>
+    </div>
+    <div class="infra-row">
+      <span class="infra-name">caddy :443</span>
+      <span class="pill pill-ok">tls ok</span>
+    </div>
+    <div class="infra-row">
+      <span class="infra-name">postgresql</span>
+      <span class="pill pill-ok">connected</span>
+    </div>
+    <div class="infra-row">
+      <span class="infra-name">redis (replay guard)</span>
+      <span class="pill pill-ok">connected</span>
+    </div>
+    <div class="infra-row">
+      <span class="infra-name">wireguard wg0</span>
+      <span class="pill pill-ok">up · 10.x.x.x</span>
+    </div>
+    <div class="infra-row">
+      <span class="infra-name">dashboard :3000</span>
+      <span class="pill pill-warn">wg0 only</span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>Foritech Secure System v0.8-dev</span>
+  <span>access: VPN only · no public route</span>
+</div>
+</div>
+
+<script>
+const devices = ['iot2050-001','iot2050-002','gateway-plc-01'];
+const reasons = ['','','','','','signature ok','ml-dsa-65 verified'];
+const rejectReasons = ['replay guard','tamper detected','malformed header'];
+let events = [];
+
+function ts() {
+  const d = new Date();
+  return d.toTimeString().slice(0,8) + '.' + String(d.getMilliseconds()).padStart(3,'0');
+}
+
+function addEvent() {
+  const ok = Math.random() > 0.04;
+  const dev = devices[Math.floor(Math.random() * devices.length)];
+  const lat = (Math.random() * 8 + 0.8).toFixed(1);
+  events.unshift({ ts: ts(), dev, ok, lat, reason: ok ? '' : rejectReasons[Math.floor(Math.random()*rejectReasons.length)] });
+  if (events.length > 8) events.pop();
+  renderFeed();
+}
+
+function renderFeed() {
+  const feed = document.getElementById('feed');
+  feed.innerHTML = events.map(e => `
+    <div class="event-row">
+      <span class="ts">${e.ts}</span>
+      <span class="dev">${e.dev}</span>
+      <span class="${e.ok ? 'status-ok' : 'status-fail'}">${e.ok ? 'VERIFIED' : 'REJECTED'}</span>
+      <span class="lat">${e.lat}ms</span>
+    </div>
+  `).join('');
+}
+
+for (let i = 0; i < 6; i++) addEvent();
+setInterval(addEvent, 1800);
+
+let verif = 1247;
+setInterval(() => {
+  verif += Math.floor(Math.random() * 4);
+  document.getElementById('kv-verif').textContent = verif.toLocaleString();
+}, 3000);
+</script>
