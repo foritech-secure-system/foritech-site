@@ -28,19 +28,20 @@ export default function RootLayout({
   );
 }
 export const metadata = {
+  metadataBase: new URL("https://www.foritech.bg"),
   title: "Foritech — Cryptographic Verification for Machine Data",
-  description: "Foritech verifies that telemetry and machine data came from the right device and was not altered. Post-quantum cryptography for industrial IoT.",
+  description: "Foritech cryptographically verifies telemetry and machine data using post-quantum cryptography. Prove data origin and integrity for industrial IoT, energy systems, and critical infrastructure.",
   openGraph: {
     title: "Foritech — Cryptographic Verification for Machine Data",
     description: "In a world where AI can fake anything, Foritech proves what is real.",
     url: "https://www.foritech.bg",
     siteName: "Foritech Secure System",
-    images: [{ url: "https://www.foritech.bg/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/og-image1.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Foritech — Cryptographic Verification for Machine Data",
-    images: ["https://www.foritech.bg/og-image.png"],
+    images: ["/og-image.png"],
   },
 };
