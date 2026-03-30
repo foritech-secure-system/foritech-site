@@ -1,3 +1,8 @@
+import PacketFlow from "./components/PacketFlow";
+import VerificationPulse from "./components/VerificationPulse";
+import TypingTagline from "./components/TypingTagline";
+import SecurityScore from "./components/SecurityScore";
+
 "use client";
 import { useState, useEffect, useRef } from "react";
 
@@ -193,6 +198,15 @@ export default function Home() {
       <section id="how" className="py-24 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">HOW IT WORKS</div>
+          <div className="mt-8 mb-6">
+          <TypingTagline />
+          </div>
+          <div className="mt-8">
+          <PacketFlow />
+          </div>
+          <div className="mt-10">
+          <VerificationPulse />
+          </div>
           <h2 className="text-3xl font-bold mb-16">
             When AI can fabricate logs, images, and telemetry,<br />
             <span className="text-white/50">industries need a way to prove what data is real.</span>
@@ -467,6 +481,11 @@ export default function Home() {
               className="bg-[#00FF88] text-black px-8 py-4 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
               TRY WITH YOUR DEVICE
             </a>
+            <section className="py-16 px-6 border-t border-white/5">
+            <div className="max-w-3xl mx-auto">
+            <SecurityScore />
+            </div>
+            </section>
             <a href="mailto:security@foritech.bg"
               className="border border-white/20 text-white/70 px-8 py-4 text-sm tracking-wider hover:border-white/40 hover:text-white transition-colors">
               REQUEST DEMO
