@@ -325,7 +325,7 @@ export default function Home() {
                   "[OK-FORITECH] System dependencies installed",
                   "[OK-FORITECH] liboqs (PQC) built",
                   "[OK-FORITECH] ML-DSA-65 keys generated",
-                  "[OK-FORITECH] Edge Agent ready",
+                  "[OK-FORITECH] Edge Agent ready — trust decisions are never made on the device.",
                 ].map((line, i) => (
                   <div key={i} className="text-xs text-white/30 font-mono">{line}</div>
                 ))}
@@ -396,7 +396,8 @@ export default function Home() {
       <section id="pricing" className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-6xl mx-auto">
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
-          <h2 className="text-3xl font-bold mb-16">Edge is free. Verification is the product.</h2>
+          <h2 className="text-3xl font-bold mb-4">Edge is free. Verification is the product.</h2>
+          <p className="text-white/50 text-sm mb-16">You pay for verification, not infrastructure.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
