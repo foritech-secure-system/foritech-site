@@ -254,8 +254,9 @@ export default function Home() {
       {/* COMPARISON */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-4xl mx-auto">
-          <div className="text-xs text-white/60 tracking-[0.3em] mb-4">POSITIONING</div>
-          <h2 className="text-3xl font-bold mb-3">MQTT tells you data arrived.<br />
+          <div className="text-xs text-white/60 tracking-[0.3em] mb-4">DATA TRUST COMPARISON</div>
+          <h2 className="text-3xl font-bold mb-3">
+            MQTT tells you data arrived.<br />
             <span className="text-[#00FF88]">Foritech proves data is real.</span>
           </h2>
           <p className="text-white/60 mb-10 text-sm max-w-xl">
@@ -266,38 +267,35 @@ export default function Home() {
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-3 pr-6 text-white/40 font-normal tracking-wider text-xs">CAPABILITY</th>
-                  <th className="text-center py-3 px-4 text-white/40 font-normal tracking-wider text-xs">MQTT / Brokers</th>
-                  <th className="text-center py-3 px-4 text-white/40 font-normal tracking-wider text-xs">TLS only</th>
-                  <th className="text-center py-3 px-4 text-[#00FF88] font-normal tracking-wider text-xs">FORITECH</th>
+                  <th className="text-left py-3 pr-6 text-white/50 font-normal tracking-wider text-xs">CAPABILITY</th>
+                  <th className="text-center py-3 px-8 text-white/50 font-normal tracking-wider text-xs">TRADITIONAL SYSTEMS</th>
+                  <th className="text-center py-3 px-8 text-[#00FF88] font-normal tracking-wider text-xs">FORITECH — PROVES DATA</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["Purpose",              "Move data",        "Encrypt channel",  "Prove data"],
-                  ["Tamper detection",     "❌",               "❌",               "✅"],
-                  ["Data origin proof",    "❌",               "❌",               "✅"],
-                  ["Replay protection",    "❌",               "❌",               "✅"],
-                  ["Post-quantum crypto",  "❌",               "Partial",          "✅"],
-                  ["Works with existing stack", "—",           "—",               "✅ Yes"],
-                ].map(([cap, a, b, c], i) => (
+                  ["Purpose",            "Move data",          "Prove data"],
+                  ["Trust model",        "Trust infrastructure","Trust cryptography"],
+                  ["Tamper detection",   "❌",                  "✅"],
+                  ["Data origin proof",  "❌",                  "✅"],
+                  ["Replay protection",  "❌",                  "✅"],
+                  ["Post-quantum ready", "❌",                  "✅"],
+                ].map(([cap, a, b], i) => (
                   <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02]">
                     <td className="py-4 pr-6 text-white/80">{cap}</td>
-                    <td className="py-4 px-4 text-center text-white/50">{a}</td>
-                    <td className="py-4 px-4 text-center text-white/50">{b}</td>
-                    <td className="py-4 px-4 text-center font-bold text-[#00FF88]">{c}</td>
+                    <td className="py-4 px-8 text-center text-white/40">{a}</td>
+                    <td className="py-4 px-8 text-center font-bold text-[#00FF88]">{b}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-white/40 text-xs mt-8 text-center">
+          <p className="text-white/30 text-xs mt-8 text-center">
             Foritech is not an IoT platform. It does not collect, store, or visualize data.<br />
-            It is the <span className="text-white/70">cryptographic trust layer</span> for machine data.
+            It is the <span className="text-white/60">cryptographic trust layer</span> for machine data.
           </p>
         </div>
       </section>
-      
       {/* DEMO */}
       <section id="demo" className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-6xl mx-auto">
