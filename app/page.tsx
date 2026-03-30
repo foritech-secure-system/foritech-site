@@ -393,55 +393,241 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
+      
       {/* PRICING */}
+      
+            
+      
       <section id="pricing" className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
-          <h2 className="text-3xl font-bold mb-4">Edge is free. Verification is the product.</h2>
-          <p className="text-white/50 text-sm mb-16">You pay for verification, not infrastructure.</p>
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
-            {/* FREE */}
-            <div className="border border-white/5 p-8">
-              <div className="text-xs tracking-[0.3em] text-white/40 mb-4">FREE</div>
-              <div className="text-4xl font-bold mb-1">€0</div>
-              <div className="text-xs text-white/30 mb-8">forever</div>
-              <ul className="space-y-2 mb-8">
-                {["1 device", "100 verifications/day", "Edge Agent included", "Community support"].map((f, j) => (
-                  <li key={j} className="text-xs text-white/50 flex items-center gap-2">
-                    <span className="text-[#00FF88]">✓</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="https://buy.stripe.com/cNi28r29X0uq7YNfbVfbq00"
-                target="_blank"
-                className="block text-center text-xs py-3 tracking-wider border border-white/20 text-white/60 hover:border-white/40 transition-colors">
-                START FREE
-              </a>
-            </div>
-            {/* ENTERPRISE */}
-            <div className="border border-[#00FF88]/30 p-8 bg-[#00FF88]/5">
-              <div className="text-xs tracking-[0.3em] text-white/40 mb-4">ENTERPRISE</div>
-              <div className="text-4xl font-bold mb-1">Custom</div>
-              <div className="text-xs text-white/30 mb-8">pilot deployment</div>
-              <ul className="space-y-2 mb-8">
-                {["Unlimited devices", "On-prem or cloud", "Dedicated support", "Custom SLA", "Compliance reporting"].map((f, j) => (
-                  <li key={j} className="text-xs text-white/50 flex items-center gap-2">
-                    <span className="text-[#00FF88]">✓</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="mailto:hristofor@foritech.bg"
-                className="block text-center text-xs py-3 tracking-wider bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90 transition-colors">
-                CONTACT US
-              </a>
-            </div>
-          </div>
-          <p className="text-white/30 text-xs mt-8">
-            Industrial and Starter tiers coming soon. <a href="mailto:hristofor@foritech.bg" className="text-[#00FF88]/60 hover:text-[#00FF88]">Join the waitlist →</a>
-          </p>
-        </div>
-      </section>
+              <div className="max-w-6xl mx-auto">
+                <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
+                <h2 className="text-3xl font-bold mb-4">Simple pricing for real machine-data proof.</h2>
+                <p className="text-white/50 text-sm mb-16 max-w-3xl">
+                  Start with devices or APIs. Add audit exports when needed. Move to Enterprise when you need dedicated deployment,
+                  support, and scale.
+                </p>
+
+                <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                  {[
+                    {
+                      name: "EDGE STARTER",
+                      price: "€49 / month",
+                      bestFor: "Small pilots and first device rollouts",
+                      includes: [
+                        "up to 5 enrolled devices",
+                        "Edge installer access",
+                        "dashboard visibility",
+                        "device status and basic logs",
+                        "included verification quota",
+                        "email support",
+                      ],
+                      extra: "Additional devices from €8 / device / month",
+                      cta: "START WITH EDGE",
+                      href: "mailto:security@foritech.bg?subject=Foritech%20Edge%20Starter",
+                      featured: false,
+                    },
+                    {
+                      name: "VERIFY API",
+                      price: "€99 / month",
+                      bestFor: "Developers, integrations, and platform teams",
+                      includes: [
+                        "API key",
+                        "verification endpoint access",
+                        "usage dashboard",
+                        "rate limits",
+                        "onboarding docs",
+                        "base monthly quota",
+                      ],
+                      extra: "Additional verification volume from €0.002 / verification",
+                      cta: "GET API ACCESS",
+                      href: "mailto:security@foritech.bg?subject=Foritech%20Verify%20API",
+                      featured: true,
+                    },
+                    {
+                      name: "AUDIT PACK",
+                      price: "from €2,500 / report pack",
+                      bestFor: "Compliance evidence, pilot proof packs, customer-facing reports",
+                      includes: [
+                        "verification export",
+                        "proof bundle",
+                        "downloadable evidence set",
+                        "delivery-ready report package",
+                      ],
+                      extra: "Usually bought for pilots, reviews, or customer reporting",
+                      cta: "REQUEST AUDIT PACK",
+                      href: "mailto:security@foritech.bg?subject=Foritech%20Audit%20Pack",
+                      featured: false,
+                    },
+                    {
+                      name: "ENTERPRISE",
+                      price: "Custom",
+                      bestFor: "Production deployments, private infrastructure, and regulated use cases",
+                      includes: [
+                        "dedicated onboarding",
+                        "private cloud / on-prem / hybrid options",
+                        "SLA options",
+                        "security and architecture review",
+                        "higher limits",
+                        "priority support",
+                      ],
+                      extra: "Commercial rollout planning included",
+                      cta: "TALK TO SALES",
+                      href: "mailto:security@foritech.bg?subject=Foritech%20Enterprise",
+                      featured: false,
+                    },
+                  ].map((plan) => (
+                    <div
+                      key={plan.name}
+                      className={`border p-8 flex flex-col ${plan.featured ? "border-[#00FF88]/30 bg-[#00FF88]/5" : "border-white/5"}`}
+                    >
+                      <div className="text-xs tracking-[0.3em] text-white/40 mb-4">{plan.name}</div>
+                      <div className="text-3xl font-bold mb-3 leading-tight">{plan.price}</div>
+                      <p className="text-xs text-white/40 mb-6 leading-relaxed">{plan.bestFor}</p>
+                      <div className="text-xs text-white/30 tracking-wider mb-3">INCLUDES</div>
+                      <ul className="space-y-2 mb-6 flex-1">
+                        {plan.includes.map((f) => (
+                          <li key={f} className="text-xs text-white/60 flex items-start gap-2 leading-relaxed">
+                            <span className="text-[#00FF88] mt-0.5">✓</span>
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-xs text-white/35 mb-8 leading-relaxed">{plan.extra}</p>
+                      <a
+                        href={plan.href}
+                        className={`block text-center text-xs py-3 tracking-wider transition-colors ${plan.featured ? "bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90" : "border border-white/20 text-white/70 hover:border-white/40 hover:text-white"}`}
+                      >
+                        {plan.cta}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-20 grid lg:grid-cols-2 gap-10 items-start">
+                  <div>
+                    <div className="text-xs text-white/30 tracking-[0.3em] mb-4">WHAT HAPPENS AFTER PURCHASE</div>
+                    <h3 className="text-2xl font-bold mb-4">Clear delivery after every purchase.</h3>
+                    <p className="text-white/45 text-sm leading-relaxed max-w-2xl">
+                      The buyer should always understand what they are buying, what they receive, and how they start.
+                    </p>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {[
+                      ["Edge", "Installer access, enrollment instructions, licensed device slots, dashboard visibility, and first connected devices in the platform."],
+                      ["Verify API", "API key, docs, verification access, usage tracking, quota visibility, and rate-limit visibility."],
+                      ["Audit", "Structured proof package, verification history export, and downloadable evidence bundle."],
+                      ["Enterprise", "Onboarding, pilot or rollout plan, deployment architecture discussion, and a commercial path to production."],
+                    ].map(([title, desc]) => (
+                      <div key={title} className="border border-white/5 p-5">
+                        <div className="text-sm font-bold text-white/85 mb-2">{title}</div>
+                        <p className="text-xs text-white/45 leading-relaxed">{desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-20">
+                  <div className="text-xs text-white/30 tracking-[0.3em] mb-4">FAQ</div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[
+                      ["What am I paying for?", "Cryptographic verification infrastructure that proves machine data came from the right device and was not altered."],
+                      ["Is the dashboard included?", "Yes. Dashboard visibility is included in Edge plans and expanded in Enterprise deployments."],
+                      ["Do I need to use the API?", "No. You can start with Edge only. The API is for teams that want direct integration."],
+                      ["Is Audit separate from Enterprise?", "Yes. Audit can be purchased separately, but it is usually bundled into Enterprise engagements."],
+                      ["Do you offer on-prem deployment?", "Yes. Private cloud, on-prem, and hybrid deployment options are available through Enterprise."],
+                    ].map(([q, a]) => (
+                      <div key={q} className="border border-white/5 p-5">
+                        <div className="text-sm font-bold text-white/85 mb-2">{q}</div>
+                        <p className="text-xs text-white/45 leading-relaxed">{a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* INVESTORS */}
+            <section id="investors" className="py-24 px-6 border-t border-white/5">
+              <div className="max-w-6xl mx-auto">
+                <div className="text-xs text-white/30 tracking-[0.3em] mb-4">FOR INVESTORS</div>
+                <div className="grid md:grid-cols-2 gap-16 items-start">
+                  <div>
+                    <h2 className="text-3xl font-bold mb-6">
+                      Building the standard for machine data authenticity.
+                    </h2>
+                    <p className="text-white/50 text-sm leading-relaxed mb-8">
+                      Foritech Secure System is a cryptographic verification platform for telemetry
+                      and machine data. It acts like a digital notary, proving where data came from
+                      and whether it was altered.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      {[
+                        { label: "Market", value: "Industrial telemetry integrity + AI data verification" },
+                        { label: "Model", value: "Verification SaaS + Device licensing" },
+                        { label: "Moat", value: "PQC-first, closed verify engine" },
+                        { label: "Status", value: "v0.8 — IoT2050 validated" },
+                      ].map((item, i) => (
+                        <div key={i} className="border border-white/5 p-4">
+                          <div className="text-xs text-white/30 mb-1">{item.label}</div>
+                          <div className="text-xs text-white/70">{item.value}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <a href="mailto:security@foritech.bg"
+                      className="inline-block text-xs border border-[#00FF88]/40 text-[#00FF88] px-6 py-3 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
+                      REQUEST ONE-PAGER →
+                    </a>
+                  </div>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Per verification", value: "€0.001 – €0.01" },
+                      { label: "Device license", value: "€5 – €20 / device / month" },
+                      { label: "Enterprise node", value: "€50k – €250k" },
+                      { label: "Target devices (Y1)", value: "10,000" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span className="text-xs text-white/40">{item.label}</span>
+                        <span className="text-xs font-bold text-[#00FF88]">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* FINAL CTA */}
+            <section className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
+              <div className="max-w-6xl mx-auto text-center">
+                <h2 className="text-4xl font-bold mb-6">Start small. Prove value fast. Scale when you're ready.</h2>
+                <p className="text-white/40 text-sm mb-10 max-w-2xl mx-auto">
+                  Begin with a pilot, connect your first devices, and turn machine-data verification into a production capability.
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <a href="#pricing"
+                    className="bg-[#00FF88] text-black px-8 py-4 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
+                    START WITH EDGE
+                  </a>
+                  <a href="#pricing"
+                    className="border border-white/20 text-white/70 px-8 py-4 text-sm tracking-wider hover:border-white/40 hover:text-white transition-colors">
+                    GET API ACCESS
+                  </a>
+                  <a href="mailto:security@foritech.bg?subject=Foritech%20Enterprise%20Pilot"
+                    className="border border-[#00FF88]/30 text-[#00FF88] px-8 py-4 text-sm tracking-wider hover:bg-[#00FF88]/10 transition-colors">
+                    BOOK ENTERPRISE PILOT
+                  </a>
+                </div>
+                <section className="py-16 px-6 border-t border-white/5">
+                <div className="max-w-3xl mx-auto">
+                <SecurityScore />
+                </div>
+                </section>
+              </div>
+            </section>
+
+      
+
+
 
       {/* INVESTORS */}
       <section id="investors" className="py-24 px-6 border-t border-white/5">
