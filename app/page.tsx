@@ -481,7 +481,7 @@ export default function Home() {
               className="bg-[#00FF88] text-black px-8 py-4 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
               TRY WITH YOUR DEVICE
             </a>          
-            <a href="mailto:security@foritech.bg"
+            <a href="https://www.foritech.bg/demo_dashbord.html"
               className="border border-white/20 text-white/70 px-8 py-4 text-sm tracking-wider hover:border-white/40 hover:text-white transition-colors">
               REQUEST DEMO
             </a>
