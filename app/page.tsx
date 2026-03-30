@@ -297,7 +297,8 @@ export default function Home() {
         </div>
       </section>
       {/* DEMO */}
-      <section id="demo" className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
+      <section id="demo" />
+          <p className="text-white/50 text-sm mb-8">See how fake data gets rejected.</p className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-6xl mx-auto">
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">LIVE DEMO</div>
           <h2 className="text-3xl font-bold mb-4">Try it in 2 minutes</h2>
@@ -376,10 +377,10 @@ export default function Home() {
           <div className="text-xs text-white/30 tracking-[0.3em] mb-12">USE CASES</div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: "🏭", title: "Industrial IoT", desc: "Machine telemetry integrity for PLCs and sensors" },
-              { icon: "⚡", title: "Energy", desc: "Meter fraud detection and tamper-proof readings" },
-              { icon: "📡", title: "Telecom", desc: "Network event validation and log authenticity" },
-              { icon: "🏙", title: "Smart Infrastructure", desc: "Sensor authenticity for city-scale deployments" },
+              { icon: "🏭", title: "Industrial telemetry integrity", desc: "Machine telemetry integrity for PLCs and sensors" },
+              { icon: "⚡", title: "Energy", desc: "Fraud-proof energy readings — cryptographically verified" },
+              { icon: "📡", title: "Telecom", desc: "Verified network logs — tamper-evident by design" },
+              { icon: "🏙", title: "Smart Infrastructure", desc: "Trusted sensor data — proven origin and integrity" },
             ].map((item, i) => (
               <div key={i} className="border border-white/5 p-6 hover:border-white/10 transition-colors">
                 <div className="text-2xl mb-4">{item.icon}</div>
@@ -481,7 +482,7 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {[
-                  { label: "Market", value: "Industrial IoT + AI data verification" },
+                  { label: "Market", value: "Industrial telemetry integrity + AI data verification" },
                   { label: "Model", value: "Verification SaaS + Device licensing" },
                   { label: "Moat", value: "PQC-first, closed verify engine" },
                   { label: "Status", value: "v0.8 — IoT2050 validated" },
