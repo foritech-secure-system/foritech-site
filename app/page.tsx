@@ -268,18 +268,20 @@ export default function Home() {
               <thead>
                 <tr className="border-b border-white/10">
                   <th className="text-left py-3 pr-6 text-white/50 font-normal tracking-wider text-xs">CAPABILITY</th>
-                  <th className="text-center py-3 px-8 text-white/50 font-normal tracking-wider text-xs">TRADITIONAL SYSTEMS</th>
-                  <th className="text-center py-3 px-8 text-[#00FF88] font-normal tracking-wider text-xs">FORITECH — PROVES DATA</th>
+                  <th className="text-center py-3 px-8 text-white/50 font-normal tracking-wider text-xs">MQTT (TLS only)</th>
+                  <th className="text-center py-3 px-8 text-[#00FF88] font-normal tracking-wider text-xs">MQTT + FORITECH</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ["Purpose",            "Move data",          "Prove data"],
-                  ["Trust model",        "Trust infrastructure","Trust cryptography"],
-                  ["Tamper detection",   "❌",                  "✅"],
-                  ["Data origin proof",  "❌",                  "✅"],
-                  ["Replay protection",  "❌",                  "✅"],
-                  ["Post-quantum ready", "❌",                  "✅"],
+                  ["Security model",         "Trust the network",    "Zero Trust"],
+                  ["Data protection",        "In transit only",      "End-to-end"],
+                  ["Broker visibility",      "Broker sees data",     "Broker is blind"],
+                  ["Authentication",         "Connection-level",     "Per-message (ML-DSA)"],
+                  ["Tamper protection",      "❌",                   "✅"],
+                  ["Replay protection",      "❌",                   "✅"],
+                  ["Data origin proof",      "❌",                   "✅"],
+                  ["Broker compromised",     "Data exposed",         "Data stays secure"],
                 ].map(([cap, a, b], i) => (
                   <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02]">
                     <td className="py-4 pr-6 text-white/80">{cap}</td>
