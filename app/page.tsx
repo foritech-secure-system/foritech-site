@@ -251,6 +251,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COMPARISON */}
+      <section className="py-24 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-xs text-white/60 tracking-[0.3em] mb-4">HOW FORITECH COMPARES</div>
+          <h2 className="text-3xl font-bold mb-4">Existing stacks solve transport.<br />Foritech solves the data itself.</h2>
+          <p className="text-white/60 mb-10 text-sm">TLS and MQTT protect the channel. Foritech proves what traveled through it.</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="text-left py-3 pr-6 text-white/40 font-normal tracking-wider text-xs">CAPABILITY</th>
+                  <th className="text-center py-3 px-4 text-white/40 font-normal tracking-wider text-xs">MQTT / TLS stack</th>
+                  <th className="text-center py-3 px-4 text-white/40 font-normal tracking-wider text-xs">Device-only tools</th>
+                  <th className="text-center py-3 px-4 text-[#00FF88] font-normal tracking-wider text-xs">FORITECH</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Transport security",        "Yes",     "Partial", "Yes"],
+                  ["Signed telemetry",          "No",      "Rare",    "Yes"],
+                  ["Tamper detection",          "No",      "Partial", "Yes"],
+                  ["Verification before storage","No",     "No",      "Yes"],
+                  ["Post-quantum readiness",    "No",      "No",      "Yes"],
+                  ["Replay protection",         "Partial", "No",      "Yes"],
+                ].map(([cap, a, b, c], i) => (
+                  <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02]">
+                    <td className="py-4 pr-6 text-white/80">{cap}</td>
+                    <td className="py-4 px-4 text-center text-white/40">{a}</td>
+                    <td className="py-4 px-4 text-center text-white/40">{b}</td>
+                    <td className="py-4 px-4 text-center font-bold text-[#00FF88]">{c}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
       {/* DEMO */}
       <section id="demo" className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-6xl mx-auto">
