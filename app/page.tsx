@@ -245,7 +245,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="mt-8 text-xs text-white/20 tracking-wider text-center">
+          <div className="mt-8 text-xs text-white/50 tracking-wider text-center">
             Device → Foritech Edge Agent → .ftech Container → Foritech Verification API → Trusted Pipeline
           </div>
         </div>
