@@ -203,9 +203,7 @@ export default function Home() {
           <div className="mt-8">
           <PacketFlow />
           </div>
-          <div className="mt-10">
-          <VerificationPulse />
-          </div>
+        
           <h2 className="text-3xl font-bold mb-16">
             When AI can fabricate logs, images, and telemetry,<br />
             <span className="text-white/50">industries need a way to prove what data is real.</span>
@@ -246,6 +244,9 @@ export default function Home() {
           </div>
           <div className="mt-8 text-xs text-white/50 tracking-wider text-center">
             Device → Foritech Edge Agent → .ftech Container → Foritech Verification API → Trusted Pipeline
+          </div>
+          <div className="mt-10">
+          <VerificationPulse />
           </div>
         </div>
       </section>
