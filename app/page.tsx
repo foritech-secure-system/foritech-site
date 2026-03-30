@@ -400,72 +400,46 @@ export default function Home() {
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">PRICING</div>
           <h2 className="text-3xl font-bold mb-4">Edge is free. Verification is the product.</h2>
           <p className="text-white/50 text-sm mb-16">You pay for verification, not infrastructure.</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                name: "FREE",
-                price: "€0",
-                period: "forever",
-                features: ["1 device", "100 verifications/day", "Community support", "Edge Agent included"],
-                cta: "Start free",
-                href: "https://buy.stripe.com/cNi28r29X0uq7YNfbVfbq00",
-                highlight: false,
-              },
-              {
-                name: "STARTER",
-                price: "€199",
-                period: "per month",
-                features: ["10 devices", "100,000 verifications/month", "API access", "Audit logs", "Email support"],
-                cta: "Subscribe →",
-                href: "https://buy.stripe.com/4gM7sLbKx0uq4MB3tdfbq01",
-                highlight: false,
-              },
-              {
-                name: "INDUSTRIAL",
-                price: "€999",
-                period: "per month",
-                features: ["50 devices", "1,000,000 verifications/month", "Priority support", "Compliance reports", "SLA"],
-                cta: "Subscribe →",
-                href: "https://buy.stripe.com/aFafZh15T2Cyenb9RBfbq02",
-                highlight: true,
-              },
-              {
-                name: "ENTERPRISE",
-                price: "Custom",
-                period: "",
-                features: ["Unlimited devices", "Unlimited verifications", "On-prem cluster", "Dedicated support", "Custom SLA"],
-                cta: "Contact us",
-                href: "mailto:security@foritech.bg",
-                highlight: false,
-              },
-            ].map((plan, i) => (
-              <div key={i} className={`border p-8 ${plan.highlight ? "border-[#00FF88]/40 bg-[#00FF88]/5" : "border-white/5"}`}>
-                <div className="text-xs tracking-[0.3em] text-white/40 mb-4">{plan.name}</div>
-                <div className="text-4xl font-bold mb-1">{plan.price}</div>
-                <div className="text-xs text-white/30 mb-8">{plan.period}</div>
-                <ul className="space-y-2 mb-8">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="text-xs text-white/50 flex items-center gap-2">
-                      <span className="text-[#00FF88]">✓</span> {f}
-                    </li>
-                  ))}
-                </ul>
-                <a href="/notary"
-              className="text-xs text-[#00FF88] border border-[#00FF88]/30 px-3 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
-              NOTARY API
-            </a>
-            <a href={plan.href}
-                  target={plan.href.startsWith("mailto") ? undefined : "_blank"}
-                  className={`block text-center text-xs py-3 tracking-wider transition-colors ${
-                    plan.highlight
-                      ? "bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90"
-                      : "border border-white/20 text-white/60 hover:border-white/40"
-                  }`}>
-                  {plan.cta.toUpperCase()}
-                </a>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
+            {/* FREE */}
+            <div className="border border-white/5 p-8">
+              <div className="text-xs tracking-[0.3em] text-white/40 mb-4">FREE</div>
+              <div className="text-4xl font-bold mb-1">€0</div>
+              <div className="text-xs text-white/30 mb-8">forever</div>
+              <ul className="space-y-2 mb-8">
+                {["1 device", "100 verifications/day", "Edge Agent included", "Community support"].map((f, j) => (
+                  <li key={j} className="text-xs text-white/50 flex items-center gap-2">
+                    <span className="text-[#00FF88]">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="https://buy.stripe.com/cNi28r29X0uq7YNfbVfbq00"
+                target="_blank"
+                className="block text-center text-xs py-3 tracking-wider border border-white/20 text-white/60 hover:border-white/40 transition-colors">
+                START FREE
+              </a>
+            </div>
+            {/* ENTERPRISE */}
+            <div className="border border-[#00FF88]/30 p-8 bg-[#00FF88]/5">
+              <div className="text-xs tracking-[0.3em] text-white/40 mb-4">ENTERPRISE</div>
+              <div className="text-4xl font-bold mb-1">Custom</div>
+              <div className="text-xs text-white/30 mb-8">pilot deployment</div>
+              <ul className="space-y-2 mb-8">
+                {["Unlimited devices", "On-prem or cloud", "Dedicated support", "Custom SLA", "Compliance reporting"].map((f, j) => (
+                  <li key={j} className="text-xs text-white/50 flex items-center gap-2">
+                    <span className="text-[#00FF88]">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="mailto:hristofor@foritech.bg"
+                className="block text-center text-xs py-3 tracking-wider bg-[#00FF88] text-black font-bold hover:bg-[#00FF88]/90 transition-colors">
+                CONTACT US
+              </a>
+            </div>
           </div>
+          <p className="text-white/30 text-xs mt-8">
+            Industrial and Starter tiers coming soon. <a href="mailto:hristofor@foritech.bg" className="text-[#00FF88]/60 hover:text-[#00FF88]">Join the waitlist →</a>
+          </p>
         </div>
       </section>
 
