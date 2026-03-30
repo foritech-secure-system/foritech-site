@@ -139,7 +139,7 @@ export default function Home() {
                 <div className="text-xs text-white/30 tracking-wider mb-6">LIVE PIPELINE</div>
                 <div className="space-y-3">
                   {[
-                    { label: "IoT2050 / Sensor", status: "SIGNING", color: "text-blue-400" },
+                    { label: "Sensor", status: "SIGNING", color: "text-blue-400" },
                     { label: "ML-DSA-65 Container", status: "WRAPPED", color: "text-yellow-400" },
                     { label: "Transport (HTTP/MQTT)", status: "SENDING", color: "text-purple-400" },
                     { label: "Foritech Verification", status: "VERIFIED", color: "text-[#00FF88]" },
