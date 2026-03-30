@@ -1,9 +1,8 @@
+"use client";
 import PacketFlow from "./components/PacketFlow";
 import VerificationPulse from "./components/VerificationPulse";
 import TypingTagline from "./components/TypingTagline";
 import SecurityScore from "./components/SecurityScore";
-
-"use client";
 import { useState, useEffect, useRef } from "react";
 
 function ContactForm() {
