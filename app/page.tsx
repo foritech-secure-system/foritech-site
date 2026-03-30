@@ -479,17 +479,17 @@ export default function Home() {
             <a href="#demo"
               className="bg-[#00FF88] text-black px-8 py-4 text-sm font-bold tracking-wider hover:bg-[#00FF88]/90 transition-colors">
               TRY WITH YOUR DEVICE
-            </a>
-            <section className="py-16 px-6 border-t border-white/5">
-            <div className="max-w-3xl mx-auto">
-            <SecurityScore />
-            </div>
-            </section>
+            </a>          
             <a href="mailto:security@foritech.bg"
               className="border border-white/20 text-white/70 px-8 py-4 text-sm tracking-wider hover:border-white/40 hover:text-white transition-colors">
               REQUEST DEMO
             </a>
           </div>
+          <section className="py-16 px-6 border-t border-white/5">
+          <div className="max-w-3xl mx-auto">
+          <SecurityScore />
+          </div>
+          </section>
         </div>
       </section>
 
