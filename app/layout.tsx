@@ -33,7 +33,7 @@ export const metadata = {
   description: "Foritech cryptographically verifies telemetry and machine data using post-quantum cryptography. Prove data origin and integrity for industrial IoT, energy systems, and critical infrastructure.",
   openGraph: {
     title: "Foritech — Cryptographic Verification for Machine Data",
-    description: "In a world where AI can fake anything, Foritech proves what is real.",
+    description: "In a world where AI can fake anything, Foritech proves what is real. Post-quantum cryptographic verification for industrial telemetry, machine data, and critical infrastructure.",
     url: "https://www.foritech.bg",
     siteName: "Foritech Secure System",
     images: [{ url: "/foritech-banner-1200x630.png", width: 1200, height: 630 }],
