@@ -433,7 +433,7 @@ export default function Home() {
                       ],
                       extra: "anchor price — easy yes, no subscription risk",
                       cta: "START PILOT",
-                      href: "mailto:security@foritech.bg?subject=Foritech%20Pilot%20-%20Start",
+                      href: "https://buy.stripe.com/5kQcN5g0N1yu3Ix5Blfbq03",
                       featured: false,
                     },
                     {
@@ -453,7 +453,7 @@ export default function Home() {
                       ],
                       extra: "most popular",
                       cta: "START PRODUCTION",
-                      href: "mailto:security@foritech.bg?subject=Foritech%20Production",
+                      href: "https://buy.stripe.com/14A9AT7uh4KGcf39RBfbq04",
                       featured: true,
                     },
                     {
