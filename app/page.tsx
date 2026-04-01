@@ -408,68 +408,62 @@ export default function Home() {
                   support, and scale.
                 </p>
 
-                <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-3 gap-6">
                   {[
                     {
-                      name: "EDGE STARTER",
-                      price: "€49 / month",
-                      bestFor: "Small pilots and first device rollouts",
+                      name: "PILOT",
+                      price: "€990",
+                      period: "flat / 3 months",
+                      hook: "Get first verified data in under 2 minutes.",
+                      pain: "Detect if your data is being tampered with.",
+                      bestFor: "First deployment. Low risk. Full access.",
                       includes: [
-                        "up to 5 enrolled devices",
-                        "Edge installer access",
-                        "dashboard visibility",
-                        "device status and basic logs",
-                        "included verification quota",
-                        "email support",
+                        "up to 10 devices",
+                        "full API access",
+                        "onboarding included",
+                        "dashboard + audit exports",
+                        "dedicated setup support",
+                        "From pilot to production in 3 months",
                       ],
-                      extra: "Additional devices from €8 / device / month",
-                      cta: "START WITH EDGE",
-                      href: "mailto:security@foritech.bg?subject=Foritech%20Edge%20Starter",
+                      extra: "anchor price — easy yes, no subscription risk",
+                      cta: "START PILOT",
+                      href: "mailto:security@foritech.bg?subject=Foritech%20Pilot%20-%20Start",
                       featured: false,
                     },
                     {
-                      name: "VERIFY API",
-                      price: "€99 / month",
-                      bestFor: "Developers, integrations, and platform teams",
+                      name: "PRODUCTION",
+                      price: "€199",
+                      period: "/ month",
+                      hook: "Prove every data packet is real, at scale.",
+                      pain: "Stop trusting data you cannot verify.",
+                      bestFor: "After pilot. Unlimited devices. Pay per verify.",
                       includes: [
-                        "API key",
-                        "verification endpoint access",
-                        "usage dashboard",
-                        "rate limits",
-                        "onboarding docs",
-                        "base monthly quota",
+                        "unlimited devices",
+                        "€0.002 / verification",
+                        "dashboard + audit",
+                        "SLA basic",
+                        "priority support",
+                        "natural upgrade from Pilot",
                       ],
-                      extra: "Additional verification volume from €0.002 / verification",
-                      cta: "GET API ACCESS",
-                      href: "mailto:security@foritech.bg?subject=Foritech%20Verify%20API",
+                      extra: "most popular",
+                      cta: "START PRODUCTION",
+                      href: "mailto:security@foritech.bg?subject=Foritech%20Production",
                       featured: true,
-                    },
-                    {
-                      name: "AUDIT PACK",
-                      price: "from €2,500 / report pack",
-                      bestFor: "Compliance evidence, pilot proof packs, customer-facing reports",
-                      includes: [
-                        "verification export",
-                        "proof bundle",
-                        "downloadable evidence set",
-                        "delivery-ready report package",
-                      ],
-                      extra: "Usually bought for pilots, reviews, or customer reporting",
-                      cta: "REQUEST AUDIT PACK",
-                      href: "mailto:security@foritech.bg?subject=Foritech%20Audit%20Pack",
-                      featured: false,
                     },
                     {
                       name: "ENTERPRISE",
                       price: "Custom",
-                      bestFor: "Production deployments, private infrastructure, and regulated use cases",
+                      period: "",
+                      hook: "On-prem. Compliance. Full control.",
+                      pain: "Your data never leaves your infrastructure.",
+                      bestFor: "Large deployments, regulated environments.",
                       includes: [
+                        "on-prem / private cloud / hybrid",
+                        "compliance & audit ready",
                         "dedicated onboarding",
-                        "private cloud / on-prem / hybrid options",
                         "SLA options",
-                        "security and architecture review",
-                        "higher limits",
-                        "priority support",
+                        "architecture review",
+                        "Pilot → Production → Enterprise path",
                       ],
                       extra: "Commercial rollout planning included",
                       cta: "TALK TO SALES",
@@ -482,8 +476,11 @@ export default function Home() {
                       className={`border p-8 flex flex-col ${plan.featured ? "border-[#00FF88]/30 bg-[#00FF88]/5" : "border-white/5"}`}
                     >
                       <div className="text-xs tracking-[0.3em] text-white/40 mb-4">{plan.name}</div>
-                      <div className="text-3xl font-bold mb-3 leading-tight">{plan.price}</div>
-                      <p className="text-xs text-white/40 mb-6 leading-relaxed">{plan.bestFor}</p>
+                      <div className="text-3xl font-bold leading-tight">{plan.price}</div>
+                      {(plan as any).period && <div className="text-xs text-white/40 mb-3">{(plan as any).period}</div>}
+                      {(plan as any).hook && <p className="text-sm text-white/80 font-medium mb-2 leading-snug">{(plan as any).hook}</p>}
+                      {(plan as any).pain && <p className="text-xs text-white/45 mb-6 leading-relaxed">{(plan as any).pain}</p>}
+                      {!(plan as any).hook && <p className="text-xs text-white/40 mb-6 leading-relaxed">{plan.bestFor}</p>}
                       <div className="text-xs text-white/30 tracking-wider mb-3">INCLUDES</div>
                       <ul className="space-y-2 mb-6 flex-1">
                         {plan.includes.map((f) => (
