@@ -36,12 +36,12 @@ export const metadata = {
     description: "In a world where AI can fake anything, Foritech proves what is real.",
     url: "https://www.foritech.bg",
     siteName: "Foritech Secure System",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/foritech-banner-1200x630.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Foritech — Cryptographic Verification for Machine Data",
-    images: ["/og-image.png"],
+    images: ["/foritech-banner-1200x630.png"],
   },
 };
