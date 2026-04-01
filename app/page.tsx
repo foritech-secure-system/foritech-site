@@ -91,10 +91,16 @@ export default function Home() {
             <a href="#pricing" className="hover:text-white/80 transition-colors">PRICING</a>
             <a href="https://www.foritech.bg/investor.html" className="hover:text-white/80 transition-colors">INVESTORS</a>
           </div>
-          <a href="mailto:security@foritech.bg"
-            className="text-xs border border-[#00FF88]/40 text-[#00FF88] px-4 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
-            CONTACT
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="https://app.foritech.bg/login"
+              className="text-xs text-white/40 hover:text-white/70 transition-colors tracking-wider">
+              LOGIN
+            </a>
+            <a href="mailto:security@foritech.bg"
+              className="text-xs border border-[#00FF88]/40 text-[#00FF88] px-4 py-1.5 hover:bg-[#00FF88]/10 transition-colors tracking-wider">
+              CONTACT
+            </a>
+          </div>
         </div>
       </nav>
 
