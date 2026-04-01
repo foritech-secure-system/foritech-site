@@ -300,8 +300,8 @@ export default function Home() {
       </section>
       {/* DEMO */}
       <section id="demo" className="py-24 px-6 border-t border-white/5 bg-white/[0.01]">
-        <p className="text-white/50 text-sm mb-8">See how fake data gets rejected.</p>
         <div className="max-w-6xl mx-auto">
+          <p className="text-white/50 text-sm mb-8">See how fake data gets rejected.</p>
           <div className="text-xs text-white/30 tracking-[0.3em] mb-4">LIVE DEMO</div>
           <h2 className="text-3xl font-bold mb-4">Try it in 2 minutes</h2>
           <p className="text-white/40 text-sm mb-12 max-w-xl">
