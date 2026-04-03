@@ -125,7 +125,75 @@ export default function ProtocolSpec() {
               <p className="mt-3 text-xs text-white/40">A container is either verified or rejected — no partial trust.</p>
             </div>
           </Section>
-          <Section num="17" title="Status">
+          <Section num="17" title="Error Codes">
+            Verification rejection must include a reason code.
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full text-xs border-collapse">
+                <thead><tr className="border-b border-white/10">
+                  <th className="text-left py-2 pr-8 text-white/40 font-normal tracking-wider">CODE</th>
+                  <th className="text-left py-2 text-white/40 font-normal tracking-wider">MEANING</th>
+                </tr></thead>
+                <tbody className="divide-y divide-white/5">
+                  {[
+                    ["INVALID_SIGNATURE", "Signature verification failed"],
+                    ["MALFORMED_CONTAINER", "Container structure is invalid or incomplete"],
+                    ["UNKNOWN_KEY", "key_id not found in trusted key registry"],
+                    ["EXPIRED_TIMESTAMP", "Timestamp outside the accepted replay window"],
+                    ["REPLAY_DETECTED", "Nonce has been seen before"],
+                    ["UNSUPPORTED_VERSION", "Protocol version not supported"],
+                    ["UNSUPPORTED_ALGORITHM", "Signature algorithm not in approved registry"],
+                    ["POLICY_VIOLATION", "Container rejected by service-layer policy"],
+                  ].map(([code, meaning]) => (
+                    <tr key={code}>
+                      <td className="py-2 pr-8 text-[#00FF88] font-mono">{code}</td>
+                      <td className="py-2 text-white/50">{meaning}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Section>
+          <Section num="18" title="Versioning Policy">
+            The container header includes a version field identifying the protocol version.
+            Implementations must reject containers with unsupported versions with reason code UNSUPPORTED_VERSION.
+            Version negotiation is not performed. Producers must declare the version they use.
+            Consumers must explicitly support that version. Backward compatibility is not guaranteed across major versions.
+            <pre className="mt-4 bg-[#0D1117] border border-white/10 p-4 text-[#00FF88] text-xs">{`Current version: 1`}</pre>
+          </Section>
+          <Section num="19" title="Canonicalization Rules">
+            Deterministic signing requires a canonical serialization of the signed material.
+            <ul className="space-y-2 mt-4">
+              {[
+                "JSON fields must be serialized in lexicographic key order",
+                "No whitespace between tokens (compact form)",
+                "String encoding: UTF-8",
+                "Numbers: integer representation, no trailing zeros",
+                "Boolean: true / false lowercase",
+                "Signed byte sequence: canonical(header) || canonical(metadata) || payload_bytes",
+                "No length prefix or delimiter added between sections at the outer level",
+              ].map((p) => <li key={p} className="flex gap-3"><span className="text-[#00FF88]">→</span>{p}</li>)}
+            </ul>
+            <p className="mt-4 text-white/40 text-xs">Implementations must produce identical byte sequences for identical logical containers. Any deviation in serialization invalidates the signature.</p>
+          </Section>
+          <Section num="20" title="Key Trust Model">
+            Each container declares a key_id in the metadata. The key_id is derived from the PQC public key
+            using SHA-256(public_key_bytes).hex(). The key_id is a stable identifier, not a trust source.
+            Trust is established by locating the corresponding public key in the Foritech Device Registry
+            and performing ML-DSA-65 signature verification.
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              {[
+                ["ACTIVE", "accepted for verification", "#00FF88"],
+                ["REVOKED", "rejected — containers signed with this key are rejected", "#ef4444"],
+                ["EXPIRED", "rejected by policy after TTL", "#facc15"],
+              ].map(([state, desc, color]) => (
+                <div key={state} className="border border-white/10 p-4">
+                  <div className="text-xs font-bold mb-1" style={{color}}>{state}</div>
+                  <div className="text-xs text-white/40">{desc}</div>
+                </div>
+              ))}
+            </div>
+          </Section>
+          <Section num="21" title="Status">
             <div className="border border-yellow-400/20 bg-yellow-400/5 p-4 mt-2">
               <div className="text-xs text-yellow-400 tracking-wider mb-2">EXPERIMENTAL</div>
               <p>This specification is experimental and subject to controlled evolution under the Foritech Secure System architecture and governance model.</p>
