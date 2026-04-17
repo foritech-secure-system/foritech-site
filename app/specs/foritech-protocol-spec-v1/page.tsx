@@ -22,8 +22,10 @@ export default function ProtocolSpec() {
           <div className="text-xs text-[#00FF88] tracking-[0.3em] mb-4">FORITECH SECURE SYSTEM</div>
           <h1 className="text-4xl font-bold mb-4">Foritech Protocol Specification</h1>
           <div className="flex flex-wrap gap-6 text-xs text-white/40">
-            <span>Version: <span className="text-white/70">1.0-draft</span></span>
-            <span>Status: <span className="text-yellow-400">Experimental</span></span>
+            <span>Version: <span className="text-white/70">1.0</span></span>
+			<span>Status: <span className="text-[#00FF88]">IANA Registered</span></span>
+			<span>IANA PEN: <span className="text-white/70">65385</span></span>
+			<span>Registered: <span className="text-white/70">2026-04-15</span></span>
             <span>Media Type: <span className="text-white/70">application/vnd.foritech.container</span></span>
             <span>Extension: <span className="text-[#00FF88]">.ftech</span></span>
           </div>
@@ -116,8 +118,8 @@ export default function ProtocolSpec() {
             Requires shared container specification, deterministic serialization, agreement on protocol version,
             metadata semantics, and signature algorithm. Payload interpretation may vary but verification behavior must be consistent.
           </Section>
-          <Section num="15" title="Media Type Registration Intent">
-            <pre className="mt-2 bg-[#0D1117] border border-white/10 p-4 text-[#00FF88] text-xs">{`Media Type: application/vnd.foritech.container\nExtension:  .ftech`}</pre>
+          <Section num="15" title="Media Type Registration ">
+            <pre className="mt-2 bg-[#0D1117] border border-white/10 p-4 text-[#00FF88] text-xs">{Media Type: application/vnd.foritech.container\nExtension:  .ftech\nIANA Status: Registered (2026-04-15)\nIANA PEN: 65385\nUsage: LIMITED USE``}</pre>
           </Section>
           <Section num="16" title="Verification Philosophy">
             <div className="border border-white/10 p-8 text-center bg-white/[0.02] mt-2">
@@ -195,8 +197,8 @@ export default function ProtocolSpec() {
           </Section>
           <Section num="21" title="Status">
             <div className="border border-yellow-400/20 bg-yellow-400/5 p-4 mt-2">
-              <div className="text-xs text-yellow-400 tracking-wider mb-2">EXPERIMENTAL</div>
-              <p>This specification is experimental and subject to controlled evolution under the Foritech Secure System architecture and governance model.</p>
+              <div className="text-xs text-[#00FF88] tracking-wider mb-2">IANA REGISTERED</div>
+              <p>This specification is registered with IANA under media type <span className="text-[#00FF88]">application/vnd.foritech.container</span> (2026-04-15). IANA Private Enterprise Number: 65385.</p>
             </div>
           </Section>
         </div>
