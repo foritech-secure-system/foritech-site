@@ -119,10 +119,7 @@ export default function ProtocolSpec() {
             metadata semantics, and signature algorithm. Payload interpretation may vary but verification behavior must be consistent.
           </Section>
           <Section num="15" title="Media Type Registration ">
-            <pre className="mt-2 bg-[#0D1117] border border-white/10 p-4 text-[#00FF88] text-xs">{`Media Type: application/vnd.foritech.container
-                                                                                                   Extension:  .ftech
-                                                                                                   IANA Status: Registered (2026-04-15)
-                                                                                                   IANA PEN: 65385\nUsage: LIMITED USE`}
+            <pre className="mt-2 bg-[#0D1117] border border-white/10 p-4 text-[#00FF88] text-xs">{`Media Type: application/vnd.foritech.container\nExtension:  .ftech\nIANA Status: Registered (2026-04-15)\nIANA PEN: 65385\nUsage: LIMITED USE`}
             </pre>
           </Section>
           <Section num="16" title="Verification Philosophy">
